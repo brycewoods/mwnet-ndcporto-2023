@@ -32,7 +32,6 @@ jobs:
 
       - name: dotnet publish
         run: dotnet publish -c Rockaway.WebApp -o ${{env.DOTNET_ROOT}}/myapp
-        working-directory: ./Rockaway
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
