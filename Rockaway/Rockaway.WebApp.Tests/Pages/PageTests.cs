@@ -33,6 +33,14 @@ public class PageTests {
 		title.InnerHtml.ShouldBe("Rockaway");
 	}
 
+	[Fact]
+	public async Task Artists_Includes_Webmaster_Of_Puppets() {
+		var factory = new WebApplicationFactory<Program>();
+		var client = factory.CreateClient();
+		var html = await client.GetStringAsync("/artists");
+		html.ShouldContain("Webmaster of Puppets");
+	}
+
 	[Theory]
 	[InlineData("/", "Rockaway")]
 	[InlineData("/privacy", "Privacy Policy - Rockaway")]
