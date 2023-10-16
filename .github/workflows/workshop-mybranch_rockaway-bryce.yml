@@ -28,11 +28,11 @@ jobs:
 
       - name: Run Tests
         run: dotnet test
-        working-directory: src/Rockaway
+        working-directory: ./Rockaway
 
       - name: dotnet publish
         run: dotnet publish -c Rockaway.WebApp/Release -o ${{env.DOTNET_ROOT}}/myapp
-        working-directory: src/Rockaway
+        working-directory: ./Rockaway
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
