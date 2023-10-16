@@ -9,85 +9,85 @@ using Rockaway.WebApp.Data;
 using Rockaway.WebApp.Data.Entities;
 
 namespace Rockaway.WebApp.Controllers {
-	public class ArtistsController : Controller {
+	public class VenueController : Controller {
 		private readonly RockawayDbContext _context;
 
-		public ArtistsController(RockawayDbContext context) {
+		public VenueController(RockawayDbContext context) {
 			_context = context;
 		}
 
-		// GET: Artists
+		// GET: Venue
 		public async Task<IActionResult> Index() {
-			return _context.Artists != null ?
-						View(await _context.Artists.ToListAsync()) :
-						Problem("Entity set 'RockawayDbContext.Artists'  is null.");
+			return _context.Venue != null ?
+						View(await _context.Venue.ToListAsync()) :
+						Problem("Entity set 'RockawayDbContext.Venue'  is null.");
 		}
 
-		// GET: Artists/Details/5
+		// GET: Venue/Details/5
 		public async Task<IActionResult> Details(Guid? id) {
-			if (id == null || _context.Artists == null) {
+			if (id == null || _context.Venue == null) {
 				return NotFound();
 			}
 
-			var artist = await _context.Artists
+			var venue = await _context.Venue
 				.FirstOrDefaultAsync(m => m.Id == id);
-			if (artist == null) {
+			if (venue == null) {
 				return NotFound();
 			}
 
-			return View(artist);
+			return View(venue);
 		}
 
-		// GET: Artists/Create
+		// GET: Venue/Create
 		public IActionResult Create() {
 			return View();
 		}
 
-		// POST: Artists/Create
+		// POST: Venue/Create
 		// To protect from overposting attacks, enable the specific properties you want to bind to.
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("Id,Name,Description,Slug")] Artist artist) {
+		public async Task<IActionResult> Create([Bind("Id,Name,Slug,Address,City,CountryCode,PostalCode,Telephone,WebsiteUrl")] Venue venue) {
 			if (ModelState.IsValid) {
-				artist.Id = Guid.NewGuid();
-				_context.Add(artist);
+				venue.Id = Guid.NewGuid();
+				_context.Add(venue);
 				await _context.SaveChangesAsync();
 				return RedirectToAction(nameof(Index));
 			}
-			return View(artist);
+			return View(venue);
 		}
 
-		// GET: Artists/Edit/5
+		// GET: Venue/Edit/5
 		public async Task<IActionResult> Edit(Guid? id) {
-			if (id == null || _context.Artists == null) {
+			if (id == null || _context.Venue == null) {
 				return NotFound();
 			}
 
-			var artist = await _context.Artists.FindAsync(id);
-			if (artist == null) {
+			var venue = await _context.Venue.FindAsync(id);
+			if (venue == null) {
 				return NotFound();
 			}
-			return View(artist);
+			return View(venue);
 		}
 
-		// POST: Artists/Edit/5
+		// POST: Venue/Edit/5
 		// To protect from overposting attacks, enable the specific properties you want to bind to.
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Description,Slug")] Artist artist) {
-			if (id != artist.Id) {
+		public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Slug,Address,City,CountryCode,PostalCode,Telephone,WebsiteUrl")] Venue venue) {
+			if (id != venue.Id) {
 				return NotFound();
 			}
 
 			if (ModelState.IsValid) {
 				try {
-					_context.Update(artist);
+					_context.Update(venue);
 					await _context.SaveChangesAsync();
 				}
 				catch (DbUpdateConcurrencyException) {
-					if (!ArtistExists(artist.Id)) {
+					if (!VenueExists(venue.Id)) {
 						return NotFound();
 					} else {
 						throw;
@@ -95,42 +95,42 @@ namespace Rockaway.WebApp.Controllers {
 				}
 				return RedirectToAction(nameof(Index));
 			}
-			return View(artist);
+			return View(venue);
 		}
 
-		// GET: Artists/Delete/5
+		// GET: Venue/Delete/5
 		public async Task<IActionResult> Delete(Guid? id) {
-			if (id == null || _context.Artists == null) {
+			if (id == null || _context.Venue == null) {
 				return NotFound();
 			}
 
-			var artist = await _context.Artists
+			var venue = await _context.Venue
 				.FirstOrDefaultAsync(m => m.Id == id);
-			if (artist == null) {
+			if (venue == null) {
 				return NotFound();
 			}
 
-			return View(artist);
+			return View(venue);
 		}
 
-		// POST: Artists/Delete/5
+		// POST: Venue/Delete/5
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> DeleteConfirmed(Guid id) {
-			if (_context.Artists == null) {
-				return Problem("Entity set 'RockawayDbContext.Artists'  is null.");
+			if (_context.Venue == null) {
+				return Problem("Entity set 'RockawayDbContext.Venue'  is null.");
 			}
-			var artist = await _context.Artists.FindAsync(id);
-			if (artist != null) {
-				_context.Artists.Remove(artist);
+			var venue = await _context.Venue.FindAsync(id);
+			if (venue != null) {
+				_context.Venue.Remove(venue);
 			}
 
 			await _context.SaveChangesAsync();
 			return RedirectToAction(nameof(Index));
 		}
 
-		private bool ArtistExists(Guid id) {
-			return (_context.Artists?.Any(e => e.Id == id)).GetValueOrDefault();
+		private bool VenueExists(Guid id) {
+			return (_context.Venue?.Any(e => e.Id == id)).GetValueOrDefault();
 		}
 	}
 }

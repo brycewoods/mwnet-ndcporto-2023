@@ -1,7 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Rockaway.WebApp.Data.Entities;
 namespace Rockaway.WebApp.Data;
 
-using Microsoft.EntityFrameworkCore;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 using Sample;
 
 public class RockawayDbContext : DbContext {
@@ -10,9 +12,13 @@ public class RockawayDbContext : DbContext {
 	public RockawayDbContext(DbContextOptions<RockawayDbContext> options) : base(options) { }
 
 	public DbSet<Artist> Artists { get; set; } = default!;
+	public DbSet<Venue> Venue { get; set; } = default!;
+
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder) {
 		base.OnModelCreating(modelBuilder);
 		modelBuilder.Entity<Artist>().HasData(SampleData.Artists.AllArtists);
+		modelBuilder.Entity<Venue>().HasData(SampleData.Venues.AllVenues);
 	}
+
 }
