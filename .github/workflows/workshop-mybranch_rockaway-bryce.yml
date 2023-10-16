@@ -24,7 +24,6 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
-        working-directory: /Rockaway
 
       - name: Run Tests
         run: dotnet test
