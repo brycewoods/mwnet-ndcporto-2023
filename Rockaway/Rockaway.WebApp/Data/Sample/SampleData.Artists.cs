@@ -198,7 +198,7 @@ namespace Rockaway.WebApp.Data.Sample {
 
 			public static Artist Longname = new(
 				NextId,
-				"Longname longname longname longname longname longname longname longname longname longname longname longname",
+				"Longname longname longname longname longname longname longname longname longname longname longname!",
 				"Longname have a long name.",
 				"longname-etc");
 
