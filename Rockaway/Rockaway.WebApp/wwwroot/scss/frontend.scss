@@ -41,15 +41,60 @@ $border-radius-xxl: 6 * $border-radius;
 }
 
 body {
+	background: none;
 	> header {
-		@include fancy-panel;
-	}
+		@include fancy-panel(red);
+		display: flex;
+		justify-content: space-between;
+        
+		h1 a {
+			display: block;
+			font-size: 0;
+			height: 38px;
+			width: 200px;
+			background: url(/img/rockaway-logotype.svg) left center no-repeat;			
+		}
 
-	> main {
-		@include fancy-panel;
-	}
+		nav {
+			a {
+				background: $primary;
+				display: inline-block;
+				padding: 4px 16px;
+				color: $body-color;
+				font-size: 120%;
+				border-radius: $border-radius;
+				text-decoration: none;
+
+				&:hover {
+					color: $body-color;
+					background: color.scale($primary, $lightness: -50%);
+				}
+			}
+		}
+	}	
 
 	> footer {
-		@include fancy-panel;
+		@include fancy-panel;		
+		font-size: 80%;
+		display: flex;
+		justify-content: space-between;
+		nav {
+			a {
+				color: $body-color;
+				display: inline-block;
+				border-left: 1px solid #fff;
+				padding: 0 0.5em;
+			}
+	
+			a:first-child {
+				border: none;
+			}
+	
+			a:hover {
+				text-decoration: underline;
+			}
+		}
 	}
 }
+
+
