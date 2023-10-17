@@ -1,7 +1,20 @@
+@use "sass:color";
+
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
 @import "../lib/bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap');
+$font-family-sans-serif: 'PT Sans Narrow', Arial, helvetica, sans-serif;
+
+$body-color-dark: #ddd;
+$body-bg-dark: #000;
+$primary: #39f;
+$border-radius: 0;
+$border-radius-sm: 0.5 * $border-radius;
+$border-radius-lg: 1.5 * $border-radius;
+$border-radius-xl: 3 * $border-radius;
+$border-radius-xxl: 6 * $border-radius;
 
 // 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
 @import "../lib/bootstrap/scss/variables";
@@ -13,20 +26,30 @@
 @import "../lib/bootstrap/scss/maps";
 @import "../lib/bootstrap/scss/mixins";
 @import "../lib/bootstrap/scss/root";
-
-// 6. Optionally include any other parts as needed
-// @import "../lib/bootstrap/scss/utilities";
-// @import "../lib/bootstrap/scss/reboot";
-// @import "../lib/bootstrap/scss/type";
-// @import "../lib/bootstrap/scss/images";
-// @import "../lib/bootstrap/scss/containers";
-// @import "../lib/bootstrap/scss/grid";
-// @import "../lib/bootstrap/scss/helpers";
-
-// ...or import the whole Bootstrap library:
 @import "../lib/bootstrap/scss/bootstrap.scss";
-
-// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
 @import "../lib/bootstrap/scss/utilities/api";
 
+
 // 8. Add additional custom code here
+
+@mixin fancy-panel($panel-color: color.scale($primary, $lightness: -75%)) {
+	margin: $grid-gutter-width 0;
+	border-radius: 2 * $border-radius;
+	padding: 2 * $border-radius;
+	background-color: $panel-color;
+	border: 1px solid $body-color;
+}
+
+body {
+	> header {
+		@include fancy-panel;
+	}
+
+	> main {
+		@include fancy-panel;
+	}
+
+	> footer {
+		@include fancy-panel;
+	}
+}
