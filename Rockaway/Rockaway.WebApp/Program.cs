@@ -65,6 +65,8 @@ app.MapControllerRoute(
 	pattern: "{controller}/{action=Index}/{id?}");
 app.MapGet("/status",
 	(IStatusReporter reporter) => reporter.GetStatus());
+app.MapGet("/uptime",
+	(IStatusReporter reporter) => reporter.GetTimeSinceLastRestart());
 app.MapGet("boom", () => {
 	var x = 0;
 	var y = 0;

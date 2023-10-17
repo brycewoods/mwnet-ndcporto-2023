@@ -19,18 +19,18 @@ namespace Rockaway.WebApp.Controllers {
 
 		// GET: Venues
 		public async Task<IActionResult> Index() {
-			return _context.Venues != null ?
-						View(await _context.Venues.ToListAsync()) :
+			return _context.Venue != null ?
+						View(await _context.Venue.ToListAsync()) :
 						Problem("Entity set 'RockawayDbContext.Venues'  is null.");
 		}
 
 		// GET: Venues/Details/5
 		public async Task<IActionResult> Details(Guid? id) {
-			if (id == null || _context.Venues == null) {
+			if (id == null || _context.Venue == null) {
 				return NotFound();
 			}
 
-			var venue = await _context.Venues
+			var venue = await _context.Venue
 				.FirstOrDefaultAsync(m => m.Id == id);
 			if (venue == null) {
 				return NotFound();
@@ -61,11 +61,11 @@ namespace Rockaway.WebApp.Controllers {
 
 		// GET: Venues/Edit/5
 		public async Task<IActionResult> Edit(Guid? id) {
-			if (id == null || _context.Venues == null) {
+			if (id == null || _context.Venue == null) {
 				return NotFound();
 			}
 
-			var venue = await _context.Venues.FindAsync(id);
+			var venue = await _context.Venue.FindAsync(id);
 			if (venue == null) {
 				return NotFound();
 			}
@@ -101,11 +101,11 @@ namespace Rockaway.WebApp.Controllers {
 
 		// GET: Venues/Delete/5
 		public async Task<IActionResult> Delete(Guid? id) {
-			if (id == null || _context.Venues == null) {
+			if (id == null || _context.Venue == null) {
 				return NotFound();
 			}
 
-			var venue = await _context.Venues
+			var venue = await _context.Venue
 				.FirstOrDefaultAsync(m => m.Id == id);
 			if (venue == null) {
 				return NotFound();
@@ -118,12 +118,12 @@ namespace Rockaway.WebApp.Controllers {
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> DeleteConfirmed(Guid id) {
-			if (_context.Venues == null) {
+			if (_context.Venue == null) {
 				return Problem("Entity set 'RockawayDbContext.Venues'  is null.");
 			}
-			var venue = await _context.Venues.FindAsync(id);
+			var venue = await _context.Venue.FindAsync(id);
 			if (venue != null) {
-				_context.Venues.Remove(venue);
+				_context.Venue.Remove(venue);
 			}
 
 			await _context.SaveChangesAsync();
@@ -131,7 +131,7 @@ namespace Rockaway.WebApp.Controllers {
 		}
 
 		private bool VenueExists(Guid id) {
-			return (_context.Venues?.Any(e => e.Id == id)).GetValueOrDefault();
+			return (_context.Venue?.Any(e => e.Id == id)).GetValueOrDefault();
 		}
 	}
 }

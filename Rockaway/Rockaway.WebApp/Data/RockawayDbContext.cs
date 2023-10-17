@@ -13,7 +13,7 @@ public class RockawayDbContext : IdentityDbContext<IdentityUser> {
 	public RockawayDbContext(DbContextOptions<RockawayDbContext> options) : base(options) { }
 
 	public DbSet<Artist> Artists { get; set; } = default!;
-	public DbSet<Venue> Venues { get; set; } = default!;
+	public DbSet<Venue> Venue { get; set; } = default!;
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder) {
 		base.OnModelCreating(modelBuilder);
