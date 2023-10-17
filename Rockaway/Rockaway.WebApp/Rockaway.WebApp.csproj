@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\scss\frontend.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.SassCompiler" Version="1.69.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.12" />
@@ -21,6 +26,14 @@
 
   <ItemGroup>
 	<InternalsVisibleTo Include="Rockaway.WebApp.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="wwwroot\scss\frontend.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\scss\frontend.scss" />
   </ItemGroup>
 
 </Project>
